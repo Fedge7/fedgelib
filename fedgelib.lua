@@ -10,7 +10,7 @@ Fedge's library of common lua functions
 
 --- Returns `true` if the string starts with the specified `prefix` string.
 function string:startswith(prefix)
-	return str:sub(1, #prefix) == prefix
+	return self:sub(1, #prefix) == prefix
 end
 
 --- Returns `true` if the string ends with the specified `suffix` string.
