@@ -15,7 +15,15 @@ end
 
 --- Returns `true` if the string ends with the specified `suffix` string.
 function string:endswith(suffix)
-   return suffix == "" or self:sub(-#suffix) == suffix
+	return suffix == "" or self:sub(-#suffix) == suffix
+end
+
+function string:getRandChar()
+	local cset = math.random(3)
+	if cset == 1     then return string.char(math.random(48,57))
+	elseif cset == 2 then return string.char(math.random(65,90))
+	elseif cset == 3 then return string.char(math.random(97,122))
+	end
 end
 
 -------------------------------------------------------------------------------
@@ -80,6 +88,11 @@ end
 -- table | common table functions
 -------------------------------------------------------------------------------
 
+--- Returns a boolean value indicating if the specified table `t` is empty.
+function table.isempty(t)
+	return next(t) == nil
+end
+
 --- Returns `true` if the specified table `t` contains the specified `key`.
 function table.haskey(t, key)
 	return t[key] ~= nil
@@ -93,12 +106,16 @@ function table.hasval(t, val)
 	return false
 end
 
---- Returns a random element of the specified table.
-function table.randelement(tbl)
+--- Returns a random key of the specified table.
+function table.randkey(tbl)
 	local keyset = {}
 	for k in pairs(tbl) do table.insert(keyset, k) end
-	local randElement = tbl[keyset[math.random(#keyset)]]
-	return randElement
+	return keyset[math.random(#keyset)]
+end
+
+--- Returns a random element of the specified table.
+function table.randelement(tbl)
+	return tbl[table.randkey(tbl)]
 end
 
 function table.map(tbl, f)
