@@ -118,6 +118,15 @@ function table.randelement(tbl)
 	return tbl[table.randkey(tbl)]
 end
 
+--- Returns `count` number of elements of the specified table.
+function table.randelements(tbl, count)
+	local choices = {}
+	for n=1,count do
+		table.insert(choices, table.randelement(tbl))
+	end
+	return choices
+end
+
 function table.map(tbl, f)
 	local t = {}
 	for k,v in pairs(tbl) do
